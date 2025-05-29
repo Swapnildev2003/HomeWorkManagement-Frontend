@@ -1,6 +1,8 @@
 import React from 'react';
-import dummyAssignments from '../data/dummyAssignments';
+
 import AssignmentList from '../components/AssignmentList';
+import dummyAssignments from '../data/dummyAssignment';
+
 
 const StudentView = () => {
   return (
