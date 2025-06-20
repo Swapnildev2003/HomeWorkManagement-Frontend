@@ -1,24 +1,37 @@
 import React from 'react';
+import { FaChalkboardTeacher, FaUserGraduate } from 'react-icons/fa';
 
 const RoleToggle = ({ role, setRole }) => {
   return (
     <div className="flex flex-col items-center">
-      <span className="mb-2 text-gray-600">Select Role:</span>
-      <div className="inline-flex border rounded-lg overflow-hidden">
+      <span className="mb-4 text-lg text-gray-600 font-semibold tracking-wide">
+        Select Your Role
+      </span>
+
+      <div className="flex bg-white/40 backdrop-blur-md border border-gray-200 shadow-xl rounded-2xl overflow-hidden transition-all duration-300">
+       
         <button
-          className={`px-4 py-2 text-sm font-medium ${
-            role === 'Teacher' ? 'bg-blue-600 text-white' : 'bg-white text-gray-700'
-          }`}
           onClick={() => setRole('Teacher')}
+          className={`flex items-center gap-2 px-6 py-3 text-md font-semibold transition-all duration-300 ${
+            role === 'Teacher'
+              ? 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white scale-105'
+              : 'text-gray-700 hover:bg-gray-100'
+          }`}
         >
+          <FaChalkboardTeacher className="text-xl" />
           Teacher
         </button>
+
+        
         <button
-          className={`px-4 py-2 text-sm font-medium ${
-            role === 'Student' ? 'bg-blue-600 text-white' : 'bg-white text-gray-700'
-          }`}
           onClick={() => setRole('Student')}
+          className={`flex items-center gap-2 px-6 py-3 text-md font-semibold transition-all duration-300 ${
+            role === 'Student'
+              ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white scale-105'
+              : 'text-gray-700 hover:bg-gray-100'
+          }`}
         >
+          <FaUserGraduate className="text-xl" />
           Student
         </button>
       </div>
