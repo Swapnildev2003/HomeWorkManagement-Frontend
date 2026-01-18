@@ -9,14 +9,14 @@ const StudentView = ({ role, data }) => {
   const [assignments, setAssignments] = useState([]);
   const [state, setState] = useState(!false)
   const [roll, setRoll] = useState('')
-  const [response,setResponse]=useState(false)
-  const handleResponse=()=>{
-    setResponse((prev)=>!prev)
+  const [response, setResponse] = useState(false)
+  const handleResponse = () => {
+    setResponse((prev) => !prev)
   }
   const handleRoll = (value) => {
     console.log(value, "my name is")
     setRoll((prev) => prev = value)
-  
+
   }
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const StudentView = ({ role, data }) => {
   }
   console.log(data)
   return (
-    state == false ? <AddStudentForm handleRoll={handleRoll} change={handleChange} /> :
+    state == true ? <AddStudentForm handleRoll={handleRoll} change={handleChange} /> :
       <div className='text-left'>
         <h2 className="text-4xl font-semibold mb-4">Student Dashboard:</h2>
         {<AssignmentList handleResponse={handleResponse} StudentRoll={roll} role={role} assignments={assignments} />}

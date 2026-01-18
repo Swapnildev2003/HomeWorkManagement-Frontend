@@ -10,11 +10,11 @@ const TeacherView = ({ role }) => {
   const [state, setState] = useState(false)
   const [id, setId] = useState('')
   const [name, setName] = useState('')
-  
-  const [success, setSuccess] = useState(false)
-  const [subject,setSubject]=useState('')
 
-  const handleSubject=(val)=>{
+  const [success, setSuccess] = useState(false)
+  const [subject, setSubject] = useState('')
+
+  const handleSubject = (val) => {
     setSubject(val)
   }
   console.log(success)
@@ -56,7 +56,7 @@ const TeacherView = ({ role }) => {
     setId(id)
     fetchAssignments(id);
   }
-  
+
 
   const handleTeacherName = (name) => {
     setName(name)
@@ -93,9 +93,9 @@ const TeacherView = ({ role }) => {
           </div>
         )}
 
-        <AssignmentList  role={role} assignments={assignments} />
+        <AssignmentList role={role} assignments={assignments} />
       </div>)}
-      ;</>)
+    </>)
 };
 
 export default TeacherView;
