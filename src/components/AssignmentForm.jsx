@@ -3,8 +3,8 @@ import { FaUserTie, FaBook, FaListAlt, FaCalendarAlt, FaAlignLeft, FaCommentDots
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-const AssignmentForm = ({ formState, id,handleSuccess,fetchAssignments,handleSubject}) => {
- 
+const AssignmentForm = ({ formState, id, handleSuccess, fetchAssignments, handleSubject }) => {
+
   const [title, setTitle] = useState('');
   const [subject, setSubject] = useState('');
   const [type, setType] = useState('Homework');
@@ -16,16 +16,16 @@ const AssignmentForm = ({ formState, id,handleSuccess,fetchAssignments,handleSub
   useEffect(() => {
     const TeacherData = async (id) => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/teachers/${id}/`);
+        const response = await axios.get(`http://15.135.83.103:8000/api/teachers/${id}/`);
         const result = response.data
         setSubject(result.subject)
         setTeacher(result.name)
         handleSubject(subject)
-       
+
 
       } catch (error) {
         console.error("Error adding student:", error);
-       
+
 
       }
     };
@@ -35,8 +35,8 @@ const AssignmentForm = ({ formState, id,handleSuccess,fetchAssignments,handleSub
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-   
-     if (name === 'title') setTitle(value);
+
+    if (name === 'title') setTitle(value);
 
     else if (name === 'type') setType(value);
     else if (name === 'due_date') setDue_date(value);
@@ -52,58 +52,58 @@ const AssignmentForm = ({ formState, id,handleSuccess,fetchAssignments,handleSub
   // };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const formData = new FormData();
-    formData.append('teacher', id);
-    formData.append('title', title);
-    formData.append('subject', subject);
-    formData.append('type', type);
-    formData.append('due_date', due_date);
-    formData.append('description', description);
-    formData.append('teacher_remark', teacher_remark);
-    formData.append('status', status);
+    try {
+      const formData = new FormData();
+      formData.append('teacher', id);
+      formData.append('title', title);
+      formData.append('subject', subject);
+      formData.append('type', type);
+      formData.append('due_date', due_date);
+      formData.append('description', description);
+      formData.append('teacher_remark', teacher_remark);
+      formData.append('status', status);
 
-      console.log(e.target.pdf.files[0],"file data hai")
-    if (e.target.pdf.files[0]) {
-    
-      formData.append('pdf', e.target.pdf.files[0]);
-    }
+      console.log(e.target.pdf.files[0], "file data hai")
+      if (e.target.pdf.files[0]) {
 
-    const sendAssignment = await axios.post(
-      "http://127.0.0.1:8000/api/assignments/",
-      formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+        formData.append('pdf', e.target.pdf.files[0]);
       }
-    );
 
-    toast.success("✅ Assignment added successfully!");
-    formState()
-    console.log(sendAssignment);
-    setTimeout(() => {
-      fetchAssignments(id)
-         handleSuccess("data fetched")
-         
-    }, 1000);
-     
+      const sendAssignment = await axios.post(
+        "http://15.135.83.103:8000/api/assignments/",
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
 
-  } catch (error) {
-    console.error("Error adding student:", error);
-    const errorMsg = error.response?.data?.error || error.response?.data || error.message;
-    toast.error("❌ " + errorMsg);
-     handleSuccess("data not fetched")
-  }
-};
+      toast.success("✅ Assignment added successfully!");
+      formState()
+      console.log(sendAssignment);
+      setTimeout(() => {
+        fetchAssignments(id)
+        handleSuccess("data fetched")
+
+      }, 1000);
+
+
+    } catch (error) {
+      console.error("Error adding student:", error);
+      const errorMsg = error.response?.data?.error || error.response?.data || error.message;
+      toast.error("❌ " + errorMsg);
+      handleSuccess("data not fetched")
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="bg-white border p-6 rounded-2xl shadow-xl max-w-2xl mx-auto space-y-6">
       <h3 className="text-2xl font-bold text-gray-800 mb-4">📘 Add New Assignment</h3>
 
-   
+
 
       <div>
         <label className="block mb-1 text-sm font-semibold text-gray-600 flex items-center gap-2">
@@ -211,7 +211,7 @@ const AssignmentForm = ({ formState, id,handleSuccess,fetchAssignments,handleSub
           <FaFilePdf className="text-rose-600" /> Upload PDF
         </label>
         <input
-         
+
           type="file"
           name="pdf"
           accept="application/pdf"
@@ -221,7 +221,7 @@ const AssignmentForm = ({ formState, id,handleSuccess,fetchAssignments,handleSub
 
       <div className="pt-4">
         <button
-          
+
           type="submit"
           className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-300"
         >

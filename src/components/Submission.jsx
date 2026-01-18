@@ -2,12 +2,12 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { FaFileAlt, FaClock, FaCheckCircle } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
-const StudentSubmission = ({ StudentRoll, id,subject }) => {
+const StudentSubmission = ({ StudentRoll, id, subject }) => {
   const [roll, setRoll] = useState(12);
   const [status, setStatus] = useState('');
   const [date, set_date] = useState('');
   const [student_remark, setStudent_remark] = useState('');
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -26,7 +26,7 @@ const StudentSubmission = ({ StudentRoll, id,subject }) => {
       const formData = new FormData();
       formData.append("student", roll)
       formData.append("assignment", id)
-      formData.append('subject',subject)
+      formData.append('subject', subject)
       console.log(e.target.submitted_file.files[0])
       if (e.target.submitted_file.files[0]) {
         formData.append('submitted_file', e.target.submitted_file.files[0])
@@ -35,7 +35,7 @@ const StudentSubmission = ({ StudentRoll, id,subject }) => {
       formData.append("submitted_at", date)
       formData.append("student_remark", student_remark)
       console.log(formData)
-      const sendSubmission = await axios.post("http://127.0.0.1:8000/api/submissions/",
+      const sendSubmission = await axios.post("http://15.135.83.103:8000/api/submissions/",
         formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -65,7 +65,7 @@ const StudentSubmission = ({ StudentRoll, id,subject }) => {
         />
       </div>
 
- <div className="mb-4">
+      <div className="mb-4">
         <label className="block text-gray-600 text-sm mb-1">Subject:</label>
         <input
           type="text"
@@ -114,7 +114,7 @@ const StudentSubmission = ({ StudentRoll, id,subject }) => {
           <FaCheckCircle className="text-green-500" />
           Status:
         </label>
-        <select onChange={handleChange} value={ status }
+        <select onChange={handleChange} value={status}
           className="w-full border border-yellow-300 bg-yellow-50 text-yellow-700 rounded px-3 py-2"
           name="status"
         >

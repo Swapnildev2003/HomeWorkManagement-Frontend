@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
-const AddStudentForm = ({ change,handleRoll }) => {
+const AddStudentForm = ({ change, handleRoll }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNo, setPhoneNo] = useState('');
@@ -13,7 +13,7 @@ const AddStudentForm = ({ change,handleRoll }) => {
 
   const submitStudentData = async () => {
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/students/", {
+      const response = await axios.post("http://15.135.83.103:8000/api/students/", {
         name,
         email,
         phone_number: phoneNo,
@@ -30,7 +30,7 @@ const AddStudentForm = ({ change,handleRoll }) => {
         change();
       }, 2000);
 
-      
+
       setName('');
       setEmail('');
       setPhoneNo('');
@@ -47,11 +47,11 @@ const AddStudentForm = ({ change,handleRoll }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === 'name'){
+    if (name === 'name') {
       console.log(value)
-       setName(value);
-      
-    } 
+      setName(value);
+
+    }
     else if (name === 'email') setEmail(value);
     else if (name === 'phoneNo') setPhoneNo(value);
     else if (name === 'course') setCourse(value);
@@ -138,7 +138,7 @@ const AddStudentForm = ({ change,handleRoll }) => {
       </div>
 
       <button
-        onClick={()=>{submitStudentData()}}
+        onClick={() => { submitStudentData() }}
         className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded transition"
       >
         Add Student

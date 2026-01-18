@@ -14,7 +14,7 @@ const statusStyles = {
   Reviewed: 'bg-green-100 text-green-800',
 };
 
-const AssignmentCard = ({ assignment,handleId,handleSubject }) => {
+const AssignmentCard = ({ assignment, handleId, handleSubject }) => {
   const {
     id,
     title,
@@ -26,11 +26,12 @@ const AssignmentCard = ({ assignment,handleId,handleSubject }) => {
     teacher_remark,
     pdf,
   } = assignment;
-  
+
   return (
-    <div onClick={()=>{handleId(id),handleSubject(subject)
+    <div onClick={() => {
+      handleId(id), handleSubject(subject)
     }} className="bg-white shadow-md hover:shadow-lg transition rounded-lg p-6 mb-6 border border-gray-200">
-      
+
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-xl font-semibold flex items-center gap-2 text-gray-800">
           <MdAssignmentTurnedIn className="text-blue-500 text-2xl" />
@@ -45,7 +46,7 @@ const AssignmentCard = ({ assignment,handleId,handleSubject }) => {
         )}
       </div>
 
-      
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700 text-sm">
         <div className="flex items-center gap-2">
           <FaBook className="text-purple-600" />
@@ -63,7 +64,7 @@ const AssignmentCard = ({ assignment,handleId,handleSubject }) => {
           <div className="flex items-center gap-2">
             <FaFilePdf className="text-red-600" />
             <a
-              href={'http://127.0.0.1:8000'+pdf}
+              href={'http://15.135.83.103:8000' + pdf}
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 underline hover:text-blue-800"
@@ -73,8 +74,8 @@ const AssignmentCard = ({ assignment,handleId,handleSubject }) => {
           </div>
         )}
       </div>
-{/* C:\Users\Dell\Desktop\homeWork-Management-System\backend\media\assignments\pdfs */}
-    
+      {/* C:\Users\Dell\Desktop\homeWork-Management-System\backend\media\assignments\pdfs */}
+
       {(description || teacher_remark) && (
         <div className="mt-4 border-t pt-4 space-y-2">
           {description && (

@@ -23,7 +23,7 @@ const StudentView = ({ role, data }) => {
     const fetchAssignments = async () => {
 
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/assignments/`);
+        const response = await axios.get(`http://15.135.83.103:8000/api/assignments/`);
         setAssignments(response.data)
       } catch (err) {
         console.log(err)

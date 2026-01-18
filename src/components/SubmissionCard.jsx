@@ -31,12 +31,12 @@ const SubmissionCard = ({ submission, handleSubmissionId }) => {
   } = submission;
   const [phoneno, setPhoneno] = useState(NaN)
   const [change, setchange] = useState(false)
- console.log(submission)
+  console.log(submission)
 
   useEffect(() => {
     const handlePhoneNo = async () => {
       try {
-        const data = await axios.get(`http://127.0.0.1:8000/api/students/${student}/`)
+        const data = await axios.get(`http://15.135.83.103:8000/api/students/${student}/`)
         console.log(data, "ye lo phone number")
         setPhoneno(data.data.phone_number)
       } catch (error) {
@@ -88,8 +88,8 @@ const SubmissionCard = ({ submission, handleSubmissionId }) => {
           <div className="flex items-center gap-2">
             <FaFilePdf className="text-red-600" />
             <a
-              href={'http://127.0.0.1:8000' + submitted_file}
-             
+              href={'http://15.135.83.103:8000' + submitted_file}
+
               rel="noopener noreferrer"
               className="text-blue-600 underline hover:text-blue-800"
               download={submitted_file.split('/').pop()}
@@ -98,19 +98,19 @@ const SubmissionCard = ({ submission, handleSubmissionId }) => {
             </a>
           </div>
         )}
-        {change==true ?(<div className="flex items-center gap-2">
+        {change == true ? (<div className="flex items-center gap-2">
           <FaClock className="text-red-500" />
-         <a
-  href={`https://wa.me/91${phoneno}?text=${encodeURIComponent(
-    `This is your attachment.\nHere is your PDF: ${submitted_file}`
-  )}`}
-  target="_blank"
-  rel="noopener noreferrer"
->
-  Send Pdf
-</a>
+          <a
+            href={`https://wa.me/91${phoneno}?text=${encodeURIComponent(
+              `This is your attachment.\nHere is your PDF: ${submitted_file}`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Send Pdf
+          </a>
 
-        </div>):(<div>dfd</div>)}
+        </div>) : (<div>dfd</div>)}
       </div>
 
       {student_remark && (

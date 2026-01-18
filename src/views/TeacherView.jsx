@@ -23,7 +23,7 @@ const TeacherView = ({ role }) => {
     console.log(id, "ye lo id")
     try {
 
-      const response = await axios.get(`http://127.0.0.1:8000/api/assignments/`);
+      const response = await axios.get(`http://15.135.83.103:8000/api/assignments/`);
       const data = response.data
       const unique_assignment = data.filter((e) => e.teacher == id)
       setAssignments(unique_assignment)

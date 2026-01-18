@@ -4,8 +4,8 @@ import { FaChalkboardTeacher, FaEnvelope, FaPhone, FaBookOpen } from 'react-icon
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const AddTeacherForm = ({ change,handleId,handleName }) => {
-  const [id,setid]=useState("")
+const AddTeacherForm = ({ change, handleId, handleName }) => {
+  const [id, setid] = useState("")
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone_number, setPhoneNo] = useState('');
@@ -16,15 +16,15 @@ const AddTeacherForm = ({ change,handleId,handleName }) => {
     if (name === 'name') setName(value);
     else if (name === 'email') setEmail(value);
     else if (name === 'phoneNo') setPhoneNo(value);
-       else if (name === 'number') setid(value);
+    else if (name === 'number') setid(value);
     else if (name === 'subject') setSubject(value);
   };
 
 
   const submitTeacherData = async () => {
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/teachers/", {
-        id_no:id,
+      const response = await axios.post("http://15.135.83.103:8000/api/teachers/", {
+        id_no: id,
         name,
         email,
         phone_number,
@@ -58,7 +58,7 @@ const AddTeacherForm = ({ change,handleId,handleName }) => {
         <FaChalkboardTeacher className="text-indigo-600" />
         Add Teacher
       </h2>
-    <div className="mb-4">
+      <div className="mb-4">
         <label className="block text-gray-600 text-sm mb-1 flex items-center gap-2">id:</label>
         <input
           value={id}
@@ -126,7 +126,7 @@ const AddTeacherForm = ({ change,handleId,handleName }) => {
         />
       </div>
 
-      <button onClick={() =>{handleId(id),submitTeacherData(),handleName(name)}}  className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded transition">
+      <button onClick={() => { handleId(id), submitTeacherData(), handleName(name) }} className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded transition">
         Add Teacher
       </button>
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />

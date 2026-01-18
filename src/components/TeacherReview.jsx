@@ -13,31 +13,31 @@ const TeacherReviewForm = ({ submissionId, teacher_id }) => {
   const [teacherIdState, setTeacherIdState] = useState('');
   const [feedback, setFeedback] = useState('');
   const [date, setDateTime] = useState('');
-  const [grade,setGrade]=useState('')
+  const [grade, setGrade] = useState('')
 
   useEffect(() => {
     setSubmissionIdState(submissionId || '');
     setTeacherIdState(teacher_id || '');
   }, [submissionId, teacher_id]);
 
-  const handleSubmit =async () => {
+  const handleSubmit = async () => {
     const reviewData = {
       submission: submissionIdState,
       teacher: teacherIdState,
-      review_grade:grade,
-      teacher_review:feedback,
-      reviewed_at:date,
+      review_grade: grade,
+      teacher_review: feedback,
+      reviewed_at: date,
     };
     try {
-       const reviewSubmission=await axios.post("http://127.0.0.1:8000/api/reviews/",reviewData)
-        toast.success("✅ Review Done successfully!");
+      const reviewSubmission = await axios.post("http://15.135.83.103:8000/api/reviews/", reviewData)
+      toast.success("✅ Review Done successfully!");
     } catch (error) {
       console.log(error)
-        const errorMsg = error.response?.data?.error || error.response?.data || error.message;
-        toast.error("❌ " + errorMsg);
+      const errorMsg = error.response?.data?.error || error.response?.data || error.message;
+      toast.error("❌ " + errorMsg);
     }
-   
-    
+
+
   };
 
   return (
@@ -76,7 +76,7 @@ const TeacherReviewForm = ({ submissionId, teacher_id }) => {
       </div>
 
       {/* Feedback */}
-        <div className="mb-4">
+      <div className="mb-4">
         <label className="block text-gray-600 text-sm mb-1">Review Grade:</label>
         <input
           className="w-full border px-3 py-2 rounded text-gray-800"
@@ -108,7 +108,7 @@ const TeacherReviewForm = ({ submissionId, teacher_id }) => {
             onChange={(e) => setDateTime(e.target.value)}
           />
         </div>
-       
+
       </div>
 
       <button
@@ -117,7 +117,7 @@ const TeacherReviewForm = ({ submissionId, teacher_id }) => {
       >
         Submit Review
       </button>
-       <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
     </div>
   );
 };

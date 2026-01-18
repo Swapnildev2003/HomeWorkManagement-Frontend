@@ -8,8 +8,8 @@ const AssignmentSubmissionList = ({ subject, handleSubmissionId, handleTeacherId
   useEffect(() => {
     const student_submissions = async () => {
       try {
-        const res = await axios.get("http://127.0.0.1:8000/api/submissions/")
-        const assignment = await axios.get("http://127.0.0.1:8000/api/assignments/")
+        const res = await axios.get("http://15.135.83.103:8000/api/submissions/")
+        const assignment = await axios.get("http://15.135.83.103:8000/api/assignments/")
         const data = res.data
         const result = assignment.data
         console.log(res.data)
@@ -34,7 +34,7 @@ const AssignmentSubmissionList = ({ subject, handleSubmissionId, handleTeacherId
     <div>
       {state === true ? (
         submission?.map((submission) => (
-          <SubmissionCard handleSubmissionId={handleSubmissionId}  key={submission.id} submission={submission} />
+          <SubmissionCard handleSubmissionId={handleSubmissionId} key={submission.id} submission={submission} />
         ))
       ) : (
         <div>Loading.....</div>
